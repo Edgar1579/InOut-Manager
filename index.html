@@ -11,7 +11,7 @@
   <meta name="keywords" content="" />
   <meta name="description" content="" />
   <meta name="author" content="" />
-  <link rel="icon" href="/img/logoIAM.jpeg" type="image/png" sizes="50*50">
+  <link rel="icon" href="/images/logooutM.png" type="image/png" sizes="50*50">
 
   <title>InOutManager</title>
 
@@ -23,7 +23,9 @@
 <!-- font awesome style -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-
+<!-- sweet alert -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- bootstrap core css -->
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 
@@ -35,6 +37,7 @@
 <link href="css/style.css" rel="stylesheet" />
 <!-- responsive style -->
 <link href="css/responsive.css" rel="stylesheet" />
+<script src="/js/functions.js"></script>
 </head>
 
 <body>
@@ -45,7 +48,7 @@
       <div class="container-fluid">
         <nav class="navbar navbar-expand-lg custom_nav-container pt-3">
           <a class="navbar-brand" href="index.html">
-            <img src="images/InOutManagerLogo.png" alt="">
+            <img src="images/logooutM.png" alt="">
             <span>
               InOut Manager
             </span>
@@ -82,7 +85,7 @@
                 <a href="login.html">
                   <img src="images/user.png" alt="">
                   <span>
-                    Login
+                    Ingresar
                   </span>
                 </a>
               </div>
@@ -107,7 +110,7 @@
               <div class="row">
                 <div class="col-md-4">
                   <div class="img-box">
-                    <img src="images/InOutManagerLogo.png" alt="" class="imagen-redonda">
+                    <img src="images/logooutM.png" alt="" class="imagen-redonda">
                   </div>
                 </div>
                 <div class="col-md-8">
@@ -120,9 +123,8 @@
 
                     </h1>
                     <p>
-                      There are many variations of passages of Lorem Ipsum available, but the majority have suffered
-                      alteration in some form, by injected humour, or randomised words which don't look even slightly
-                      believable.
+                      "Tu aliado en la gestión de horarios laborales."
+                      
                     </p>
                     <div>
                       <a href="">
@@ -139,7 +141,7 @@
               <div class="row">
                 <div class="col-md-4">
                   <div class="img-box">
-                    <img src="images/InOutManagerLogo.png" alt="" class="imagen-redonda">
+                    <img src="images/logooutM.png" alt="" class="imagen-redonda">
                   </div>
                 </div>
                 <div class="col-md-8">
@@ -152,9 +154,7 @@
 
                     </h1>
                     <p>
-                      There are many variations of passages of Lorem Ipsum available, but the majority have suffered
-                      alteration in some form, by injected humour, or randomised words which don't look even slightly
-                      believable.
+                      "Simplifica la asistencia, maximiza la productividad."
                     </p>
                     <div>
                       <a href="">
@@ -171,7 +171,7 @@
               <div class="row">
                 <div class="col-md-4">
                   <div class="img-box">
-                    <img src="images/InOutManagerLogo.png" alt="" class="imagen-redonda">
+                    <img src="images/logooutM.png" alt="" class="imagen-redonda">
                   </div>
                 </div>
                 <div class="col-md-8">
@@ -184,9 +184,7 @@
 
                     </h1>
                     <p>
-                      There are many variations of passages of Lorem Ipsum available, but the majority have suffered
-                      alteration in some form, by injected humour, or randomised words which don't look even slightly
-                      believable.
+                      "Transforma la manera de gestionar horarios."
                     </p>
                     <div>
                       <a href="">
@@ -414,6 +412,7 @@
   
 
   <!-- contact section -->
+   
   <section class="contact_section">
     <div class="container">
       <div class="row">
@@ -428,31 +427,31 @@
       <div class="row">
         <div class="col-md-5">
           <div class="form_contaier">
-            <form>
+            <form id="myForm" class="hidden" onsubmit="return submitForm(event)">
               <div class="form-group">
-                <label for="exampleInputName1">Nombre</label>
-                <input type="text" class="form-control" id="exampleInputName1">
+                <label for="inputNombre">Nombre</label>
+                <input type="text" class="form-control" id="inputNombre" placeholder="Tu Nombre y Apellido">
               </div>
               <div class="form-group">
-                <label for="exampleInputNumber1">Numero de telefono</label>
-                <input type="text" class="form-control" id="exampleInputNumber1">
+                <label for="inputTelefono">Número de teléfono</label>
+                <input type="text" class="form-control" id="inputTelefono" placeholder="Ej: 3211234567" >
               </div>
-
               <div class="form-group">
-                <label for="exampleInputEmail1">Correo</label>
-                <input type="email" class="form-control" id="exampleInputEmail1">
+                <label for="inputEmail">Correo</label>
+                <input type="email" class="form-control" id="inputEmail" placeholder="tucorreo@email.com" >
               </div>
-              <div class="form-group ">
-                <label for="inputState">Seleccione Dependencia</label>
-                <select id="inputState" class="form-control">
-                  <option selected>Administración</option>
-                  <option selected>RR-HH</option>
-                  <option selected>Planta</option>
+              <div class="form-group">
+                <label for="inputSelect">Seleccione Dependencia</label>
+                <select id="inputSelect" class="form-control" >
+                  <option value="" disabled selected>Seleccione una opción</option>
+                  <option value="Administración">Administración</option>
+                  <option value="RR-HH">RR-HH</option>
+                  <option value="Planta">Planta</option>
                 </select>
               </div>
               <div class="form-group">
-                <label for="exampleInputMessage">Mensaje</label>
-                <input type="text" class="form-control" id="exampleInputMessage">
+                <label for="inputMensaje">Mensaje</label>
+                <textarea class="form-control" id="inputMensaje" rows="6" placeholder="Escribe tu mensaje aquí..."></textarea>
               </div>
               <button type="submit" class="">Enviar</button>
             </form>
@@ -461,11 +460,11 @@
         <div class="col-md-7">
           <div class="detail-box">
             <h3>
-              Get Now Medicines
+              InOut Manager
             </h3>
             <p>
-              There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
-              in some form, by injected humour, or randomised words which don't look even slightly believable.
+              "La solución inteligente para el control de tu equipo."
+              "Organiza, controla y mejora tu gestión laboral."
             </p>
           </div>
         </div>
