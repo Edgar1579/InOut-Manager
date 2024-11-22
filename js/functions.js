@@ -46,3 +46,7 @@ function submitForm(event) {
     }
     return false; // Puedes mantener esto si necesitas que el formulario no se envíe de verdad
 }
+
+function redirigir() {
+    window.location.href = "admin.html";
+}
