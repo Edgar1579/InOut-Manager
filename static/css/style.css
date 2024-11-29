@@ -224,6 +224,7 @@ a:focus {
     margin: 0;
     font-size: 24px;
 }
+
 .input-container {
     position: relative;
     margin: 10px 0;
@@ -825,6 +826,12 @@ a:focus {
           box-shadow: none;
 }
 
+.form-control::placeholder {
+  color: rgba(188, 187, 187, 0.7); /* Color y opacidad del placeholder */
+  opacity: 1; /* Asegúrate de que la opacidad sea 1 para que sea más visible */
+}
+
+
 .contact_section .form_contaier form .form-control#exampleInputMessage {
   height: 100px;
 }
@@ -908,6 +915,16 @@ a:focus {
 .info_section .info_noticias form button:hover {
   background-color: transparent;
   color: #38b6ff;
+}
+
+.edit {
+  background-color: #3f51b5;
+  color: #fff;
+}
+
+.delete {
+  background-color: #FF0000;
+  color: #fff;
 }
 
 /* footer section*/

@@ -228,30 +228,31 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="pages/charts/chartjs.html" class="nav-link">
-                  <i class="nav-icon fas fa-user-plus"></i>                  <p>Agregar Usuario</p>
+                  <i class="nav-icon fas fa-user-plus"></i>                  
+                  <p>Agregar Usuario</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="pages/charts/flot.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Flot</p>
+                  <i class="fas fa-pen nav-icon"></i>
+                  <p>Editar Usuario</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="pages/charts/inline.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Inline</p>
+                  <i class="fas fa-search nav-icon"></i>
+                  <p>Buscar Usuario</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="pages/charts/uplot.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>uPlot</p>
+                  <i class="fas fa-trash nav-icon"></i>
+                  <p>Eliminar Usuario</p>
                 </a>
               </li>
             </ul>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tree"></i>
               <p>
@@ -671,7 +672,7 @@
               <i class="nav-icon far fa-circle text-info"></i>
               <p>Informational</p>
             </a>
-          </li>
+          </li> -->
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -768,6 +769,7 @@
         </div>
         <!-- /.row -->
         <!-- Main row -->
+         
         <div class="row">
           <!-- Left col -->
           <section class="col-lg-7 connectedSortable">
@@ -775,30 +777,69 @@
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">
-                  <i class="fas fa-chart-pie mr-1"></i>
-                  Sales
+                  <i class="nav-icon fas fa-users"></i>
+                  Registrar Usuario
                 </h3>
                 <div class="card-tools">
-                  <ul class="nav nav-pills ml-auto">
+                 <!--  <ul class="nav nav-pills ml-auto">
                     <li class="nav-item">
                       <a class="nav-link active" href="#revenue-chart" data-toggle="tab">Area</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="#sales-chart" data-toggle="tab">Donut</a>
                     </li>
-                  </ul>
+                  </ul> -->
                 </div>
               </div><!-- /.card-header -->
               <div class="card-body">
+                
                 <div class="tab-content p-0">
+                  
                   <!-- Morris chart - Sales -->
                   <div class="chart tab-pane active" id="revenue-chart"
-                       style="position: relative; height: 300px;">
-                      <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>
+                       style="position: relative; height: 600px;">
+                       <form>
+                        <div class="mb-3">
+                          <label for="input_nombre" class="form-label">Nombre</label>
+                          <input type="text" class="form-control" id="input_nombre" required>
+                        </div>
+                        <div class="mb-3">
+                          <label for="input_email" class="form-label">Correo Electrónico</label>
+                          <input type="email" class="form-control" id="input_email" required>
+                        </div>
+    
+                        <div class="mb-3">
+                          <label for="input_fecha_expedicion_documento" class="form-label">Fecha Expedición
+                            Documento</label>
+                          <input id="input_fecha_expedicion_documento" type="date" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                          <label for="inputSelect">Tipo de Documento</label>
+                  <select id="inputSelect" class="form-control">
+                    <option value="" disabled selected>
+                      Seleccione una opción
+                    </option>
+                    <option value="Cédula de ciudadanía">CC</option>
+                    <option value="Cédula de extrangería">CE</option>
+                    <option value="Permiso temporal">PEP</option>
+                  </select>
+                          
+                        </div>
+                        <div class="mb-3">
+                          <label for="input_numero_documento" class="form-label">Número Documento</label>
+                          <input type="number" class="form-control" id="input_numero_documento" required>
+                        </div>
+                        <div class="mb-3">
+                          <label for="input_fecha_registro" class="form-label">Fecha Registro</label>
+                          <input id="input_fecha_registro" type="date" class="form-control">
+                        </div>
+                        <button class="btn btn-success">Registrar</button>
+                        <button class="btn btn-info">Consultar</button>
+                      </form>
                    </div>
-                  <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
+                  <!-- <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
                     <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas>
-                  </div>
+                  </div> -->
                 </div>
               </div><!-- /.card-body -->
             </div>
@@ -1140,102 +1181,116 @@
           <!-- /.Left col -->
           <!-- right col (We are only adding the ID to make the widgets sortable)-->
           <section class="col-lg-5 connectedSortable">
+            <table id="usuarios" class="display">
+              <thead>
+                  <tr>
+                      <th>ID</th>
+                      <th>Nombre</th>
+                      <th>Correo Electrónico</th>
+                      <th>Acciones</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td>1</td>
+                      <td>Juan Pérez</td>
+                      <td>juan.perez@example.com</td>
+                      <td>
+                          <button class="edit" data-bs-toggle="tooltip" title="Editar">
+                          <i class="fas fa-edit"></i>
+                          <button class="delete" data-bs-toggle="tooltip" title="Eliminar">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>2</td>
+                      <td>María López</td>
+                      <td>maria.lopez@example.com</td>
+                      <td>
+                          <button class="edit" data-bs-toggle="tooltip" title="Editar">
+                          <i class="fas fa-edit"></i>
+                          <button class="delete" data-bs-toggle="tooltip" title="Eliminar">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>3</td>
+                      <td>Carlos García</td>
+                      <td>carlos.garcia@example.com</td>
+                      <td>
+                          <button class="edit" data-bs-toggle="tooltip" title="Editar">
+                          <i class="fas fa-edit"></i>
+                          <button class="delete" data-bs-toggle="tooltip" title="Eliminar">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>4</td>
+                      <td>Laura Martínez</td>
+                      <td>laura.martinez@example.com</td>
+                      <td>
+                          <button class="edit" data-bs-toggle="tooltip" title="Editar">
+                          <i class="fas fa-edit"></i>
+                          <button class="delete" data-bs-toggle="tooltip" title="Eliminar">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>5</td>
+                      <td>Pedro Sánchez</td>
+                      <td>pedro.sanchez@example.com</td>
+                      <td>
+                        <button class="edit" data-bs-toggle="tooltip" title="Editar">
+                          <i class="fas fa-edit"></i>
+                          <button class="delete" data-bs-toggle="tooltip" title="Eliminar">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>6</td>
+                      <td>Lucía Fernández</td>
+                      <td>lucia.fernandez@example.com</td>
+                      <td>
+                          <button class="edit" data-bs-toggle="tooltip" title="Editar">
+                          <i class="fas fa-edit"></i>
+                          <button class="delete" data-bs-toggle="tooltip" title="Eliminar">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>7</td>
+                      <td>Javier Torres</td>
+                      <td>javier.torres@example.com</td>
+                      <td>
+                          <button class="edit" data-bs-toggle="tooltip" title="Editar">
+                          <i class="fas fa-edit"></i>
+                          <button class="delete" data-bs-toggle="tooltip" title="Eliminar">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>8</td>
+                      <td>Isabel Ramírez</td>
+                      <td>isabel.ramirez@example.com</td>
+                      <td>
+                          <button class="edit" data-bs-toggle="tooltip" title="Editar">
+                          <i class="fas fa-edit"></i>
+                          <button class="delete" data-bs-toggle="tooltip" title="Eliminar">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                      </td>
+                  </tr>
+              </tbody>
+            </table><hr><br>
 
-            <!-- Map card -->
-            <div class="card bg-gradient-primary">
-              <div class="card-header border-0">
-                <h3 class="card-title">
-                  <i class="fas fa-map-marker-alt mr-1"></i>
-                  Visitors
-                </h3>
-                <!-- card tools -->
-                <div class="card-tools">
-                  <button type="button" class="btn btn-primary btn-sm daterange" title="Date range">
-                    <i class="far fa-calendar-alt"></i>
-                  </button>
-                  <button type="button" class="btn btn-primary btn-sm" data-card-widget="collapse" title="Collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                </div>
-                <!-- /.card-tools -->
-              </div>
-              <div class="card-body">
-                <div id="world-map" style="height: 250px; width: 100%;"></div>
-              </div>
-              <!-- /.card-body-->
-              <div class="card-footer bg-transparent">
-                <div class="row">
-                  <div class="col-4 text-center">
-                    <div id="sparkline-1"></div>
-                    <div class="text-white">Visitors</div>
-                  </div>
-                  <!-- ./col -->
-                  <div class="col-4 text-center">
-                    <div id="sparkline-2"></div>
-                    <div class="text-white">Online</div>
-                  </div>
-                  <!-- ./col -->
-                  <div class="col-4 text-center">
-                    <div id="sparkline-3"></div>
-                    <div class="text-white">Sales</div>
-                  </div>
-                  <!-- ./col -->
-                </div>
-                <!-- /.row -->
-              </div>
-            </div>
-            <!-- /.card -->
-
-            <!-- solid sales graph -->
-            <div class="card bg-gradient-info">
-              <div class="card-header border-0">
-                <h3 class="card-title">
-                  <i class="fas fa-th mr-1"></i>
-                  Sales Graph
-                </h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn bg-info btn-sm" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn bg-info btn-sm" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
-              </div>
-              <div class="card-body">
-                <canvas class="chart" id="line-chart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-              </div>
-              <!-- /.card-body -->
-              <div class="card-footer bg-transparent">
-                <div class="row">
-                  <div class="col-4 text-center">
-                    <input type="text" class="knob" data-readonly="true" value="20" data-width="60" data-height="60"
-                           data-fgColor="#39CCCC">
-
-                    <div class="text-white">Mail-Orders</div>
-                  </div>
-                  <!-- ./col -->
-                  <div class="col-4 text-center">
-                    <input type="text" class="knob" data-readonly="true" value="50" data-width="60" data-height="60"
-                           data-fgColor="#39CCCC">
-
-                    <div class="text-white">Online</div>
-                  </div>
-                  <!-- ./col -->
-                  <div class="col-4 text-center">
-                    <input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60"
-                           data-fgColor="#39CCCC">
-
-                    <div class="text-white">In-Store</div>
-                  </div>
-                  <!-- ./col -->
-                </div>
-                <!-- /.row -->
-              </div>
-              <!-- /.card-footer -->
-            </div>
-            <!-- /.card -->
+           
 
             <!-- Calendar -->
             <div class="card bg-gradient-success">
@@ -1347,5 +1402,7 @@
 <script src="static/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="static/js/pages/dashboard.js"></script>
+
+
 </body>
 </html>
